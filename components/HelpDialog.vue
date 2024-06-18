@@ -19,8 +19,8 @@
                 <div>
                     <h1 class="text-sm font-bold">Abkürzungen</h1>
                     <p class="text-sm">
-                        Die Website unterstützt untrschiedluche Abkürzungen, um die Navigation zu erleichtern. Hier sind
-                        einige der wichtigsten Abkürzungen:
+                        Die Website unterstützt unterschiedliche Abkürzungen, um die Navigation zu erleichtern. Hier
+                        sind einige der wichtigsten Abkürzungen:
                     </p>
                     <ul class="mt-4 list-inside list-disc text-sm font-thin text-foreground">
                         <li>
