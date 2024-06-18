@@ -1,0 +1,83 @@
+{
+    "name": "vit-rooms",
+    "private": true,
+    "type": "module",
+    "authors": [
+        {
+            "name": "Marco Sendner",
+            "email": "marco.sendner@vit-bund.de"
+        },
+        {
+            "name": "Dominik Moormann",
+            "email": "dominik.moormann@vit-bund.de"
+        },
+        {
+            "name": "Felix Märtens",
+            "email": "felix.märtens@vit-bund.de"
+        }
+    ],
+    "engines": {
+        "node": ">=18.0.0"
+    },
+    "scripts": {
+        "build": "nuxt build",
+        "dev": "nuxt dev",
+        "dev-host": "nuxt dev --host 0.0.0.0",
+        "generate": "nuxt generate",
+        "preview": "nuxt preview",
+        "postinstall": "nuxt prepare"
+    },
+    "dependencies": {
+        "@nuxt/image": "^1.7.0",
+        "@pinia/nuxt": "^0.5.1",
+        "@prisma/client": "^5.14.0",
+        "@sidebase/nuxt-auth": "^0.7.2",
+        "@tanstack/vue-table": "^8.17.3",
+        "@types/bcrypt": "^5.0.2",
+        "@vee-validate/zod": "^4.12.8",
+        "@vueuse/core": "^10.9.0",
+        "bcrypt": "^5.1.1",
+        "class-variance-authority": "^0.7.0",
+        "clsx": "^2.1.1",
+        "ical": "^0.8.0",
+        "lucide-vue-next": "^0.379.0",
+        "nuxt": "^3.11.2",
+        "nuxt-typed-router": "^3.6.3",
+        "pinia": "^2.1.7",
+        "radix-vue": "^1.8.1",
+        "shadcn-nuxt": "^0.10.4",
+        "tailwind-merge": "^2.3.0",
+        "tailwindcss-animate": "^1.0.7",
+        "vee-validate": "^4.12.8",
+        "vue": "^3.4.27",
+        "vue-router": "^4.3.2",
+        "zod": "^3.23.8"
+    },
+    "devDependencies": {
+        "@nuxtjs/color-mode": "^3.4.1",
+        "@nuxtjs/tailwindcss": "^6.12.0",
+        "@types/fs-extra": "^11.0.4",
+        "fs-extra": "^11.2.0",
+        "nuxt-cron": "^1.5.1",
+        "prettier": "^3.2.5",
+        "prettier-plugin-tailwindcss": "^0.5.14",
+        "prisma": "^5.14.0",
+        "ts-node": "^10.9.2",
+        "tsx": "^4.15.5",
+        "typescript": "^5.4.5"
+    },
+    "prettier": {
+        "tabWidth": 4,
+        "printWidth": 120,
+        "singleQuote": true,
+        "semi": true,
+        "arrowParens": "always",
+        "trailingComma": "none",
+        "plugins": [
+            "prettier-plugin-tailwindcss"
+        ]
+    },
+    "prisma": {
+        "seed": "tsx prisma/seed.ts"
+    }
+}

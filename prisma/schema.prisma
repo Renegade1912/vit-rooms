@@ -1,0 +1,64 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+}
+
+model Room {
+  id     String  @id @default(cuid())
+  number Int     @unique
+  name   String
+  desc   String?
+
+  tags   Tag[]
+  events Event[]
+}
+
+model Tag {
+  id     String @id @default(cuid())
+  mac    String @unique
+  desc   String
+  width  Int
+  height Int
+
+  roomId String?
+  room   Room?   @relation(fields: [roomId], references: [id], onDelete: SetNull)
+}
+
+model Calendar {
+  id        String    @id @default(cuid())
+  name      String
+  url       String    @unique
+  delete_on DateTime?
+
+  events Event[]
+}
+
+model Event {
+  uid   String
+  date  DateTime
+  desc  String
+  start String
+  end   String
+
+  roomId     String
+  room       Room     @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  calendarId String
+  calendar   Calendar @relation(fields: [calendarId], references: [id], onDelete: Cascade)
+
+  @@id(name: "id", [calendarId, uid])
+}

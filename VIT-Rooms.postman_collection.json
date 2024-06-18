@@ -1,0 +1,1348 @@
+{
+	"info": {
+		"_postman_id": "149f5b6f-722f-40f4-8234-3b8eb3b01e29",
+		"name": "VIT-Rooms",
+		"description": "API endpoints for the [vit-rooms](https://github.com/Renegade1912/vit-rooms) project.\n\nMake sure to fill the minimum collection variables (e.g. url) before starting.\n\nFirst of all you should create a user with the create user endpoint.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14286151"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"console.log(\"Response: Test script\");\r",
+									"\r",
+									"pm.cookies.each(cookie => console.log(cookie));\r",
+									"let csrfToken = pm.cookies.get(\"next-auth.csrf-token\");\r",
+									"\r",
+									"let csrfTokenValue = csrfToken.split('|')[0];\r",
+									"let sessionTokenValue = pm.cookies.get(\"next-auth.session-token\");\r",
+									"\r",
+									"// console.log('csrf token value: ', csrfTokenValue);\r",
+									"// console.log('session token value: ', sessionTokenValue);\r",
+									"\r",
+									"pm.collectionVariables.set(\"csrfToken\", csrfTokenValue)\r",
+									"pm.collectionVariables.set(\"sessionToken\", sessionTokenValue)\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/auth/signin",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"signin"
+							]
+						},
+						"description": "Fill `csrfToken` variable to continue with login."
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"console.log(\"Response: Test script\");\r",
+									"\r",
+									"pm.cookies.each(cookie => console.log(cookie));\r",
+									"let csrfToken = pm.cookies.get(\"next-auth.csrf-token\");\r",
+									"\r",
+									"let csrfTokenValue = csrfToken.split('|')[0];\r",
+									"let sessionTokenValue = pm.cookies.get(\"next-auth.session-token\");\r",
+									"\r",
+									"console.log('csrf token value: ', csrfTokenValue);\r",
+									"console.log('session token value: ', sessionTokenValue);\r",
+									"\r",
+									"pm.collectionVariables.set(\"csrfToken\", csrfTokenValue)\r",
+									"pm.collectionVariables.set(\"sessionToken\", sessionTokenValue)\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "{{username}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "text"
+								},
+								{
+									"key": "csrfToken",
+									"value": "{{csrfToken}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/auth/callback/credentials",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"callback",
+								"credentials"
+							]
+						},
+						"description": "Login after recieving a `csrfToken`."
+					},
+					"response": []
+				},
+				{
+					"name": "session",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/auth/session",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"session"
+							]
+						},
+						"description": "Check if you have a session."
+					},
+					"response": [
+						{
+							"name": "session",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://{{url}}/api/auth/session",
+									"protocol": "http",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"session"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "set-cookie",
+									"value": "next-auth.session-token=eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..QcF3MtpdmP5KKtxX.0GSFlN1u24N3s40VQJ7ozPaSeMc84QpvhNy_1XYS8Vuj_zusw6MFqk2sln-yXlw5YLAxIzwn_9BcRifcXVZNuQFLo6tJOvf7FRmDo8OMqKek0WC-z1PK8uDBY7ieSU-YALtmwWFbaplIpIXmxMY0iZxcQiV5p7m6oBZW0zpsENgB96koWq3f4pHbchnUviEEIlFVt6fRbef4j7c4jU8AQ24qnitYof0aZSrVOMw.B7j4SAdENqFhuZecrZb65A; Path=/; Expires=Mon, 24 Jun 2024 08:52:00 GMT; HttpOnly; SameSite=Lax"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								},
+								{
+									"key": "date",
+									"value": "Sat, 25 May 2024 08:52:00 GMT"
+								},
+								{
+									"key": "connection",
+									"value": "close"
+								},
+								{
+									"key": "content-length",
+									"value": "130"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"user\": {\n        \"name\": \"marco.sendner\",\n        \"email\": \"marco.sendner@vit-bund.de\"\n    },\n    \"expires\": \"2024-06-24T08:52:00.696Z\"\n}"
+						}
+					]
+				}
+			],
+			"description": "# How to start\n\n1. Run `token` to get the csrfToken\n2. Run `login` to login and get a session\n    \n\nYou are now logged in (if credentials were correct)."
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Extract the \"id\" from the response body and set it as a collection variable named \"userId\"\r",
+									"pm.test(\"Extract and set userId as collection variable\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.collectionVariables.set(\"userId\", jsonData.id);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "marco.sendner",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "marco.sendner@vit-bund.de",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Starten1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/user",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user"
+							]
+						},
+						"description": "Create a new user."
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "{{userId}}",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "marco.sendner",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "marco.sendner@vit-bund.de",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Starten1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/user",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user"
+							]
+						},
+						"description": "Create a new user."
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "{{userId}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/user",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user"
+							]
+						},
+						"description": "Create a new user."
+					},
+					"response": []
+				},
+				{
+					"name": "user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/user?id={{userId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{userId}}"
+								}
+							]
+						},
+						"description": "Create a new user."
+					},
+					"response": []
+				},
+				{
+					"name": "users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/users?perPage=10&page=1&filter=",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"users"
+							],
+							"query": [
+								{
+									"key": "perPage",
+									"value": "10"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "filter",
+									"value": ""
+								}
+							]
+						},
+						"description": "Get partial rooms."
+					},
+					"response": []
+				}
+			],
+			"description": "User related endpoints."
+		},
+		{
+			"name": "Rooms",
+			"item": [
+				{
+					"name": "create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Extract the \"id\" from the response body and set it as a collection variable named \"tagId\"\r",
+									"pm.test(\"Extract and set roomId as collection variable\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.collectionVariables.set(\"roomId\", jsonData.id);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "number",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Lehrsaal 1",
+									"type": "text"
+								},
+								{
+									"key": "desc",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/room",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"room"
+							]
+						},
+						"description": "Create a new room."
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "{{roomId}}",
+									"type": "text"
+								},
+								{
+									"key": "number",
+									"value": "007",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Fasel",
+									"type": "text"
+								},
+								{
+									"key": "desc",
+									"value": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/room",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"room"
+							]
+						},
+						"description": "Update an existing room."
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "{{roomId}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/room",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"room"
+							]
+						},
+						"description": "Delete an existing room."
+					},
+					"response": []
+				},
+				{
+					"name": "room",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/room?id={{roomId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"room"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{roomId}}"
+								}
+							]
+						},
+						"description": "Get an existing room."
+					},
+					"response": []
+				},
+				{
+					"name": "rooms",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/rooms?perPage=10&page=1&filter=",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"rooms"
+							],
+							"query": [
+								{
+									"key": "perPage",
+									"value": "10"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "filter",
+									"value": ""
+								}
+							]
+						},
+						"description": "Get partial rooms."
+					},
+					"response": []
+				}
+			],
+			"description": "Room related endpoints."
+		},
+		{
+			"name": "Calendars",
+			"item": [
+				{
+					"name": "create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Extract the \"id\" from the response body and set it as a collection variable named \"calendarId\"\r",
+									"pm.test(\"Extract and set calendarId as collection variable\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.collectionVariables.set(\"calendarId\", jsonData.id);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Stundenplan VIT 2021/2 - H3 - Kurs 1",
+									"type": "text"
+								},
+								{
+									"key": "url",
+									"value": "https://www.fbfinanzen.de/ical/vit/2021/2/h3/k01",
+									"type": "text"
+								},
+								{
+									"key": "delete_on",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/calendar",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"calendar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "{{calendarId}}",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Stundenplan VIT 2021/2 - H3 - Kurs 1",
+									"type": "text"
+								},
+								{
+									"key": "url",
+									"value": "https://www.fbfinanzen.de/ical/vit/2021/2/h3/k01",
+									"type": "text"
+								},
+								{
+									"key": "delete_on",
+									"value": "2024-06-03T22:00:00.000Z",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/calendar",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"calendar"
+							]
+						},
+						"description": "Update an existing room."
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "{{calendarId}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/calendar",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"calendar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "calendar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/calendar?id={{calendarId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"calendar"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{calendarId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "calendars",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/calendars?perPage=10&page=1&filter=",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"calendars"
+							],
+							"query": [
+								{
+									"key": "perPage",
+									"value": "10"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "filter",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "refresh",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/calendar/refresh?id={{calendarId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"calendar",
+								"refresh"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{calendarId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Events",
+			"item": [
+				{
+					"name": "event",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/event?uid={{eventUID}}&calendarId={{eventCalendarId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"event"
+							],
+							"query": [
+								{
+									"key": "uid",
+									"value": "{{eventUID}}"
+								},
+								{
+									"key": "calendarId",
+									"value": "{{eventCalendarId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "events",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/events?perPage=10&page=1&filter=",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"events"
+							],
+							"query": [
+								{
+									"key": "perPage",
+									"value": "10"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "filter",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tags",
+			"item": [
+				{
+					"name": "Images",
+					"item": [
+						{
+							"name": "image",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/tag/image/{{tagId}}",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"tag",
+										"image",
+										"{{tagId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Extract the \"id\" from the response body and set it as a collection variable named \"tagId\"\r",
+									"pm.test(\"Extract and set tagId as collection variable\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.collectionVariables.set(\"tagId\", jsonData.id);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "mac",
+									"value": "02:1E:8D:6E:74:30",
+									"type": "text"
+								},
+								{
+									"key": "desc",
+									"value": "7.4\" Tag",
+									"type": "text"
+								},
+								{
+									"key": "width",
+									"value": "640",
+									"type": "text"
+								},
+								{
+									"key": "height",
+									"value": "384",
+									"type": "text"
+								},
+								{
+									"key": "roomId",
+									"value": "{{roomId}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/tag",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"tag"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "{{tagId}}",
+									"type": "text"
+								},
+								{
+									"key": "desc",
+									"value": "7.4\" Tag",
+									"type": "text"
+								},
+								{
+									"key": "mac",
+									"value": "00:00:02:1E:8D:6E:74:30",
+									"type": "text"
+								},
+								{
+									"key": "width",
+									"value": "640",
+									"type": "text"
+								},
+								{
+									"key": "height",
+									"value": "384",
+									"type": "text"
+								},
+								{
+									"key": "roomId",
+									"value": "{{roomId}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/tag",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"tag"
+							]
+						},
+						"description": "Update an existing room."
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "{{tagId}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/tag",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"tag"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "tag",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/tag?id={{tagId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"tag"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{tagId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "tags",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/tags?perPage=10&page=1&filter=",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"tags"
+							],
+							"query": [
+								{
+									"key": "perPage",
+									"value": "10"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "filter",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "unlink",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/tag/unlink?id={{tagId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"tag",
+								"unlink"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{tagId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "refresh",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/tag/refresh?id={{tagId}}",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"tag",
+								"refresh"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "{{tagId}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "refresh many",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "id",
+									"value": "{{roomId}}",
+									"description": "with roomId = room tags; without = all tags",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/tags/refresh",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"tags",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "FASTIFY-Draw-Schedule",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Lehrsaal 2\",\r\n    \"width\": \"640\",\r\n    \"height\": \"384\",\r\n    \"date\": \"11.06.2024\",\r\n    \"url\": \"http://localhost:3000/tag/clx4gzo2400006i73q2j3elr5\",\r\n    \"events\": [\r\n        {\r\n            \"desc\": \"M10 - Prüfungsleistung\",\r\n            \"start\": \"08:00\",\r\n            \"end\": \"09:35\"\r\n        },\r\n        {\r\n            \"desc\": \"M10 - Prüfungsleistung\",\r\n            \"start\": \"09:50\",\r\n            \"end\": \"11:25\"\r\n        },\r\n        {\r\n            \"desc\": \"M10 - Prüfungsleistung\",\r\n            \"start\": \"11:40\",\r\n            \"end\": \"13:15\"\r\n        },\r\n        {\r\n            \"desc\": \"M10 - Party nach Abgabe\",\r\n            \"start\": \"14:30\",\r\n            \"end\": \"16:05\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{renderer-url}}/api/tag/schedule",
+					"host": [
+						"{{renderer-url}}"
+					],
+					"path": [
+						"api",
+						"tag",
+						"schedule"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FASTIFY-Draw-Emergency",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "width",
+							"value": "640",
+							"type": "text"
+						},
+						{
+							"key": "height",
+							"value": "384",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{renderer-url}}/api/tag/emergency",
+					"host": [
+						"{{renderer-url}}"
+					],
+					"path": [
+						"api",
+						"tag",
+						"emergency"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "FASTIFY-Draw-Not-Configured",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "width",
+							"value": "640",
+							"type": "text"
+						},
+						{
+							"key": "height",
+							"value": "384",
+							"type": "text"
+						},
+						{
+							"key": "url",
+							"value": "{{url}}/tag/{{tagId}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{renderer-url}}/api/tag/configure",
+					"host": [
+						"{{renderer-url}}"
+					],
+					"path": [
+						"api",
+						"tag",
+						"configure"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "localhost:3000"
+		},
+		{
+			"key": "renderer-url",
+			"value": "localhost:3001",
+			"type": "string"
+		},
+		{
+			"key": "csrfToken",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "sessionToken",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "username",
+			"value": "admin"
+		},
+		{
+			"key": "password",
+			"value": "Starten1"
+		},
+		{
+			"key": "userId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "roomId",
+			"value": ""
+		},
+		{
+			"key": "tagId",
+			"value": ""
+		},
+		{
+			"key": "calendarId",
+			"value": ""
+		},
+		{
+			"key": "eventUID",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "eventCalendarId",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
