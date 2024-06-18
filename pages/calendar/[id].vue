@@ -248,7 +248,7 @@ const { execute: forceRefreshEvents, status: forceRefreshStatus } = useFetch('/a
             description: 'Termine wurden neu eingelesen.',
             variant: 'success'
         });
-        1;
+        refresh();
     }
 });
 
