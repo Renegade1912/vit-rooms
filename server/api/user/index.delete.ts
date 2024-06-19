@@ -29,7 +29,7 @@ export default defineEventHandler(async (event: H3Event) => {
         await deleteUser(id);
 
         // Force all clients to logout when own user is deleted (not the "best" solution, but it works)
-        sseEvent.emit('userDeleted', id);
+        sseHooks.callHook('sse:user:delete', id);
 
         setResponseStatus(event, 200);
         return 'Ok';
