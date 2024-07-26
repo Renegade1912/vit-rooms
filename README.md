@@ -64,3 +64,21 @@ We provided example scripts ([PowerShell](run.production.ps1) / [Bash](run.produ
 
 ## Integration
 The website includes a fully REST API. You can use the workflows in your own software. For more information we exported our [Postman](https://www.postman.com/) collection as a [file](/VIT-Rooms.postman_collection.json). 
+
+## Hardware
+Tag used: [7.5″ ST-GR750BN](https://github.com/OpenEPaperLink/OpenEPaperLink/wiki/7.5%E2%80%B3-ST%E2%80%90GR750BN)
+
+### 3D Printed Accessories
+#### Wall mount: ![wall mount](./hardware/wall_mount/with_label/VIT-Rooms_wall_mount_with_label.png)
+
+Material: `PLA`
+
+Settings: Infill: `8%`; Pattern: `Gyroid`; Layer height: max `0.2`mm; Support: `possible`
+
+`3` Screws: according to [DIN 7997](https://www.schrauben-lexikon.de/norm/DIN_7997.asp); Diameter: `4 mm`; Head diameter: `7.5 mm`; Length: `freely selectable`; Head thickness: `2.2 mm`
+
+#### Replacement battery case: ![battery case](./hardware/battery_case/VIT-Rooms_battery_case.png)
+Material: `TPU 95A` -> lower hardness not recommended, also possible with PLA or better PETG -> but the risk of breakage remains
+
+Settings: Layer height: `0.16`mm; Support: `None` 
+
