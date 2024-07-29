@@ -15,7 +15,6 @@ export default defineNuxtConfig({
         '@nuxtjs/tailwindcss',
         'shadcn-nuxt',
         'nuxt-typed-router',
-        '@nuxt/image',
         '@pinia/nuxt',
         'nuxt-cron',
         '@sidebase/nuxt-auth',

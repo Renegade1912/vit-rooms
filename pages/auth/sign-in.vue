@@ -3,7 +3,7 @@
         <!-- height calc: screen height - footer - border 1px -->
         <div class="flex h-[calc(100vh-3rem-1px)] flex-col justify-center px-6 py-12 lg:px-8">
             <div class="flex flex-col items-center sm:mx-auto sm:w-full sm:max-w-sm">
-                <NuxtImg src="/logo.png" alt="Logo" class="w-full px-14 md:w-2/3 md:px-0" />
+                <img src="/logo.svg" alt="Logo" class="w-full px-14 md:w-2/3 md:px-0" />
                 <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight">Anmelden</h2>
             </div>
 
